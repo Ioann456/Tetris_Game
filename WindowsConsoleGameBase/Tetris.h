@@ -10,6 +10,7 @@ private:
 	Figure* m_NextFigure;
 	bool m_End = false;
 	size_t m_Score = 0;
+	size_t m_level = 0;
 	void drawScore(PaintDevice& paintDevice);
 public:
 	const size_t m_Width = 14;

@@ -47,7 +47,8 @@ void Tetris::update(const int dt)
 	{
 		m_Figure->restore();
 		m_Score += m_GameField.merge(*m_Figure);
-		if (m_Score > 999999) m_Score = 0;
+		if (m_Score > 999999)m_Score = 0;
+		if (m_Score > 0 && m_Score % 50 == 0) m_level++;
 		m_Figure = m_NextFigure;
 		m_Figure->set_position(Point(5, 1));
 		m_NextFigure = Generate(Point(16, 1));
@@ -83,6 +84,25 @@ void Tetris::drawScore(PaintDevice& paintDevice)
 	for (int i = 0; i < score.size(); i++) {
 		Vector2 v7(14 + i, 8);
 		paintDevice.set_char(v7, score[i]);
+	}
+
+	//level
+	std::string level = std::to_string(m_level);
+	Vector2 v10(14, 10);
+	paintDevice.set_char(v10, 'L');
+	Vector2 v11(15, 10);
+	paintDevice.set_char(v11, 'E');
+	Vector2 v12(16, 10);
+	paintDevice.set_char(v12, 'V');
+	Vector2 v13(17, 10);
+	paintDevice.set_char(v13, 'E');
+	Vector2 v14(18, 10);
+	paintDevice.set_char(v14, 'L');
+	Vector2 v15(19, 10);
+	paintDevice.set_char(v15, ':');
+	for (int i = 0; i < score.size(); i++) {
+		Vector2 v16(14 + i, 11);
+		paintDevice.set_char(v16, level[i]);
 	}
 }
 
